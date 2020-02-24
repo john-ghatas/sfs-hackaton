@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import { withNavBar } from "../../HOC";
 import getLocale from "../../helper/translate";
 function App() {
