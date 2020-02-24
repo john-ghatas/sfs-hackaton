@@ -1,3 +1,4 @@
+import Wrapper from "./Wrapper";
 import NavBar from "./NavBar";
-
-export { NavBar };
+import Link from "./Link";
+export { Wrapper, NavBar, Link };

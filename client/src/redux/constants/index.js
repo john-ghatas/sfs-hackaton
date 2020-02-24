@@ -1,1 +1,1 @@
-export const CHANGE_LANG = "CHANGE_LANG";
+export const CHANGE_LANGUAGE = "CHANGE_LANGUAGE";

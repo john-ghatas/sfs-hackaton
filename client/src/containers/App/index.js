@@ -1,17 +1,13 @@
 import React from "react";
-import { withNavBar } from "../../HOC";
-import getLocale from "../../helper/translate";
-function App() {
+import Routes from "../../routes";
+import { Provider } from "react-redux";
+import store from "../../redux/store";
+const App = props => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          {getLocale("EN", "welcome")}
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
-    </div>
+    <Provider store={store}>
+      <Routes />
+    </Provider>
   );
-}
+};
 
-export default withNavBar(App);
+export default App;
