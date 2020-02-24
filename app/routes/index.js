@@ -1,7 +1,7 @@
-import test from './test'
+import getAllMinors from './getAllMinors'
 
 const routes = {
-    '/test': test
+    '/get_all_minors': getAllMinors
 }
 
 export default routes
