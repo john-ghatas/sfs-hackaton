@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 const Option = props => {
-  const { selected, text, multiSelect } = props;
+  const { multiSelect, onClick, selected, text } = props;
 
   return (
     <div style={styles.container}>
@@ -11,6 +11,7 @@ const Option = props => {
           ...styles.outerIndicator,
           ...{ borderRadius: multiSelect ? 2 : 12 }
         }}
+        onClick={onClick}
       >
         {selected && (
           <div
@@ -31,7 +32,9 @@ const Option = props => {
 const styles = {
   container: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "row",
+    marginTop: 4,
+    marginBottom: 4
   },
   outerIndicator: {
     display: "flex",
@@ -39,19 +42,21 @@ const styles = {
     justifyContent: "center",
     width: 24,
     height: 24,
-    backgroundColor: "rgb(196,196,196)",
-    marginRight: 8
+    marginRight: 8,
+    cursor: "pointer",
+    backgroundColor: "rgb(221,221,221)"
   },
   innerIndicator: {
     width: 12,
     height: 12,
-    backgroundColor: "rgb(98,98,98)"
+    backgroundColor: "rgb(34,102,221)"
   }
 };
 
 Option.propTypes = {
   selected: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
   multiSelect: PropTypes.bool.isRequired
 };
 
