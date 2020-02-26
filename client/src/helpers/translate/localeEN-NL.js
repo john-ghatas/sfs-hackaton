@@ -16,5 +16,9 @@ export default {
   hva: {
     [NL]: "HvA",
     [EN]: "AUAS"
+  },
+  question: {
+    [NL]: "Vraag",
+    [EN]: "Question"
   }
 };

@@ -8,7 +8,7 @@ class LandingPage extends Component {
   render() {
     return (
       <Container>
-        <Questionnaire />
+        <Questionnaire {...this.props} />
       </Container>
     );
   }

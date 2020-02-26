@@ -9,7 +9,7 @@ const Option = props => {
       <div
         style={{
           ...styles.outerIndicator,
-          ...{ borderRadius: multiSelect ? 2 : 12 }
+          ...{ borderRadius: multiSelect === 1 ? 2 : 12 }
         }}
         onClick={onClick}
       >
@@ -17,7 +17,7 @@ const Option = props => {
           <div
             style={{
               ...styles.innerIndicator,
-              ...{ borderRadius: multiSelect ? 1 : 6 }
+              ...{ borderRadius: multiSelect === 1 ? 1 : 6 }
             }}
           />
         )}
@@ -57,7 +57,7 @@ Option.propTypes = {
   selected: PropTypes.bool.isRequired,
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
-  multiSelect: PropTypes.bool.isRequired
+  multiSelect: PropTypes.number.isRequired
 };
 
 export default Option;

@@ -1,37 +1,25 @@
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-
+import api from "../../api";
 import { Jumbotron as Div } from "react-bootstrap";
 import Progress from "./progress";
 import Option from "./option";
-
+import { Spinner } from "react-bootstrap";
 class Questionnaire extends PureComponent {
   state = {
-    // Example data
     questions: [
-      {
-        question: "question goes here",
-        options: [
-          "answer 1",
-          "answer 2 is better",
-          "answer 3 is best",
-          "answer 4 is worst"
-        ],
-        multiSelect: true
-      },
-      {
-        question: "question goes here",
-        options: [
-          "answer 1",
-          "answer 2 is better",
-          "answer 3 is best",
-          "answer 4 is worst"
-        ],
-        multiSelect: false
-      }
+      // {
+      //   question: "Placeholder",
+      //   answers: ["Placeholer"],
+      //   multiSelect: true
+      // }
     ],
     questionIndex: 0,
     selectedOptions: []
+  };
+  componentDidMount = async () => {
+    const { language } = this.props;
+    const questions = await api.getAllQuestions(language);
+    this.setState({ questions });
   };
 
   selectOption = (index, multiSelect) => {
@@ -49,32 +37,38 @@ class Questionnaire extends PureComponent {
   };
 
   render() {
-    const question = this.state.questions[this.state.questionIndex];
-    return (
+    const { questions, questionIndex } = this.state;
+    const question = questions[questionIndex];
+    console.log(this.state);
+    return questions.length !== 0 ? (
       <Div style={styles.container}>
         <Progress
           current={this.state.questionIndex}
           length={this.state.questions.length - 1}
+          language={this.props.language}
         />
 
         <h3 style={styles.question}>
-          {question.question}
+          {question.name}
           <div style={styles.divider} />
         </h3>
 
         <div style={styles.options}>
-          {question.options.map((option, index) => {
+          {question.answers.map((option, index) => {
             return (
               <Option
                 selected={this.state.selectedOptions.includes(index)}
-                onClick={() => this.selectOption(index, question.multiSelect)}
+                onClick={() => this.selectOption(index, question.multi_select)}
                 text={option}
-                multiSelect={question.multiSelect}
+                multiSelect={question.multi_select}
+                key={index}
               />
             );
           })}
         </div>
       </Div>
+    ) : (
+      <Spinner animation="border" />
     );
   }
 }
@@ -103,7 +97,7 @@ const styles = {
   divider: {
     height: 1,
     width: "80%",
-    marginTop: 4,
+    marginTop: 14,
     marginBottom: 8,
     backgroundColor: "black"
   },

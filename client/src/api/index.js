@@ -2,17 +2,19 @@ import { endpoints, createAxios } from "./constants";
 
 const axios = createAxios();
 
-const getAllMinors = async () => {
-  await axios
-    .get(endpoints.getMinors)
+const getAllQuestions = async lang => {
+  const response = await axios
+    .get(`${endpoints.getQuestions}/?lang=${lang}`)
     .then(function(response) {
-      console.log(response);
+      return response;
     })
     .catch(function(error) {
-      console.log(error);
+      return error;
     });
+
+  return response.data;
 };
 
 export default {
-  getAllMinors
+  getAllQuestions
 };
