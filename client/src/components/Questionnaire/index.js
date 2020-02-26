@@ -9,7 +9,9 @@ class Questionnaire extends PureComponent {
   init = {
     questions: [],
     questionIndex: 0,
-    selectedOptions: []
+    selectedOptions: [],
+    programme: "",
+    tags: []
   };
   state = {
     ...this.init
@@ -24,34 +26,62 @@ class Questionnaire extends PureComponent {
     }
   };
 
+  flattenArray = arr => {
+    return arr.toString().split(",");
+  };
+
   setQuestions = async () => {
     const { language } = this.props;
     const questions = await api.getAllQuestions(language);
     this.setState({ questions });
   };
 
-  selectOption = (index, multiSelect) => {
+  // Object aan einde flattenen en object met count meesturen
+  selectOption = (index, question, option) => {
+    const { multi_select, tags } = question;
+    const { questionIndex, selectedOptions } = this.state;
     let newOptions;
+    let newTags = [...this.state.tags];
 
-    if (multiSelect) {
+    if (questionIndex === 0) {
+      this.setState({ programme: option });
+    }
+
+    if (multi_select) {
       newOptions = this.state.selectedOptions.includes(index)
-        ? this.state.selectedOptions.filter(option => option !== index)
-        : [...this.state.selectedOptions, index];
+        ? selectedOptions.filter(option => option !== index)
+        : [...selectedOptions, index];
+
+      newTags[questionIndex - 1] = this.flattenArray(
+        newOptions.map(current => {
+          return tags[current];
+        })
+      );
     } else {
+      if (questionIndex > 0) {
+        newTags[questionIndex - 1] = tags[index];
+      }
+
       newOptions = [index];
     }
 
-    this.setState({ selectedOptions: newOptions });
+    this.setState({ selectedOptions: newOptions, tags: newTags });
   };
-  // TODO event handler in option om de waarden op te slaan...
+
   changeQuestion = action => {
     const { questionIndex } = this.state;
     switch (action) {
       case "NEXT":
-        this.setState({ questionIndex: questionIndex + 1 });
+        this.setState({
+          questionIndex: questionIndex + 1,
+          selectedOptions: []
+        });
         break;
       case "PREV":
-        this.setState({ questionIndex: questionIndex - 1 });
+        this.setState({
+          questionIndex: questionIndex - 1,
+          selectedOptions: []
+        });
         break;
       default:
         break;
@@ -64,7 +94,7 @@ class Questionnaire extends PureComponent {
     const { language } = this.props;
     const question = questions[questionIndex];
     const isLast = questionIndex === questions.length - 1;
-
+    console.log("Current state!1!!!", this.state);
     return questions.length !== 0 ? (
       <Div style={styles.container}>
         <Progress
@@ -83,7 +113,7 @@ class Questionnaire extends PureComponent {
             return (
               <Option
                 selected={this.state.selectedOptions.includes(index)}
-                onClick={() => this.selectOption(index, question.multi_select)}
+                onClick={() => this.selectOption(index, question, option)}
                 text={option}
                 multiSelect={question.multi_select}
                 key={index}
