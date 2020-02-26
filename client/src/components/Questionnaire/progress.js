@@ -11,8 +11,8 @@ const Progress = props => {
       <div
         style={{
           ...styles.circle,
-          ...{ left: `${(i / length) * 100 - 1}%` },
           ...{
+            left: `${(i / length) * 100 - 1}%`,
             backgroundColor: i > current ? "ghostwhite" : "darkturquoise"
           }
         }}
@@ -32,7 +32,7 @@ const Progress = props => {
         {circles}
       </div>
 
-      <p style={styles.text}>{`Vraag ${current + 1}/${length + 1}`}</p>
+      <span style={styles.text}>{`Vraag ${current + 1}/${length + 1}`}</span>
     </Fragment>
   );
 };

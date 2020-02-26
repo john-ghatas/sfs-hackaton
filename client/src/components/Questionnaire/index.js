@@ -35,14 +35,17 @@ class Questionnaire extends PureComponent {
   };
 
   selectOption = (index, multiSelect) => {
-    const { selectedOptions } = this.state;
-    this.setState({
-      selectedOptions: multiSelect
-        ? selectedOptions.includes(index)
-          ? selectedOptions.filter(option => option !== index)
-          : [...selectedOptions, index]
-        : [index]
-    });
+    let newOptions;
+
+    if (multiSelect) {
+      newOptions = this.state.selectedOptions.includes(index)
+        ? this.state.selectedOptions.filter(option => option !== index)
+        : [...this.state.selectedOptions, index];
+    } else {
+      newOptions = [index];
+    }
+
+    this.setState({ selectedOptions: newOptions });
   };
 
   render() {
@@ -94,6 +97,7 @@ const styles = {
     ...flexCenter,
     color: "black",
     textAlign: "center",
+    marginTop: 16,
     marginBottom: 16
   },
   divider: {
