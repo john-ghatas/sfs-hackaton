@@ -1,5 +1,6 @@
 const links = {
-  root: "/"
+  root: "/",
+  results: "/results/:id"
 };
 
 export default links;
