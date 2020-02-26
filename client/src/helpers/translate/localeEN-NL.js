@@ -20,5 +20,17 @@ export default {
   question: {
     [NL]: "Vraag",
     [EN]: "Question"
+  },
+  previous: {
+    [NL]: "Vorige",
+    [EN]: "Previous"
+  },
+  next: {
+    [NL]: "Volgende",
+    [EN]: "Next"
+  },
+  finish: {
+    [NL]: "Verstuur",
+    [EN]: "Send"
   }
 };

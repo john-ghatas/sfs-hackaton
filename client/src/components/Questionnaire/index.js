@@ -3,20 +3,28 @@ import api from "../../api";
 import { Jumbotron as Div } from "react-bootstrap";
 import Progress from "./progress";
 import Option from "./option";
-import { Spinner } from "react-bootstrap";
+import { Spinner, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
+import translate from "../../helpers/translate/standalone";
 class Questionnaire extends PureComponent {
-  state = {
-    questions: [
-      // {
-      //   question: "Placeholder",
-      //   answers: ["Placeholer"],
-      //   multiSelect: true
-      // }
-    ],
+  init = {
+    questions: [],
     questionIndex: 0,
     selectedOptions: []
   };
+  state = {
+    ...this.init
+  };
   componentDidMount = async () => {
+    await this.setQuestions();
+  };
+
+  componentDidUpdate = async prevProps => {
+    if (prevProps.language !== this.props.language) {
+      await this.setQuestions();
+    }
+  };
+
+  setQuestions = async () => {
     const { language } = this.props;
     const questions = await api.getAllQuestions(language);
     this.setState({ questions });
@@ -35,11 +43,28 @@ class Questionnaire extends PureComponent {
 
     this.setState({ selectedOptions: newOptions });
   };
+  // TODO event handler in option om de waarden op te slaan...
+  changeQuestion = action => {
+    const { questionIndex } = this.state;
+    switch (action) {
+      case "NEXT":
+        this.setState({ questionIndex: questionIndex + 1 });
+        break;
+      case "PREV":
+        this.setState({ questionIndex: questionIndex - 1 });
+        break;
+      default:
+        break;
+    }
+    this.setState({ questonIndex: questionIndex + 1 });
+  };
 
   render() {
     const { questions, questionIndex } = this.state;
+    const { language } = this.props;
     const question = questions[questionIndex];
-    console.log(this.state);
+    const isLast = questionIndex === questions.length - 1;
+
     return questions.length !== 0 ? (
       <Div style={styles.container}>
         <Progress
@@ -66,6 +91,35 @@ class Questionnaire extends PureComponent {
             );
           })}
         </div>
+        <Div
+          style={{
+            ...styles.container,
+            backgroundColor: "rgba(100,100,100,0)"
+          }}
+        >
+          <ButtonToolbar aria-label="Toolbar with button groups">
+            <ButtonGroup className="mr-2">
+              <Button
+                variant="dark"
+                disabled={questionIndex === 0}
+                onClick={() => this.changeQuestion("PREV")}
+              >
+                {translate(language, "previous")}
+              </Button>
+            </ButtonGroup>
+
+            <ButtonGroup className="mr-2">
+              <Button
+                variant={isLast ? "info" : "dark"}
+                onClick={() => this.changeQuestion("NEXT")}
+              >
+                {isLast
+                  ? translate(language, "finish")
+                  : translate(language, "next")}
+              </Button>
+            </ButtonGroup>
+          </ButtonToolbar>
+        </Div>
       </Div>
     ) : (
       <Spinner animation="border" />
