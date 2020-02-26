@@ -36,7 +36,6 @@ class Questionnaire extends PureComponent {
     this.setState({ questions });
   };
 
-  // Object aan einde flattenen en object met count meesturen
   selectOption = (index, question, option) => {
     const { multi_select, tags } = question;
     const { questionIndex, selectedOptions } = this.state;
@@ -68,6 +67,16 @@ class Questionnaire extends PureComponent {
     this.setState({ selectedOptions: newOptions, tags: newTags });
   };
 
+  finishForm = () => {
+    const { tags, programme } = this.state;
+    const flattened = this.flattenArray(tags);
+    const counts = {};
+
+    for (let i = 0; i < flattened.length; i++) {
+      counts[flattened[i]] = 1 + (counts[flattened[i]] || 0);
+    }
+  };
+
   changeQuestion = action => {
     const { questionIndex } = this.state;
     switch (action) {
@@ -90,11 +99,11 @@ class Questionnaire extends PureComponent {
   };
 
   render() {
-    const { questions, questionIndex } = this.state;
+    const { questions, questionIndex, selectedOptions } = this.state;
     const { language } = this.props;
     const question = questions[questionIndex];
     const isLast = questionIndex === questions.length - 1;
-    console.log("Current state!1!!!", this.state);
+
     return questions.length !== 0 ? (
       <Div style={styles.container}>
         <Progress
@@ -127,7 +136,7 @@ class Questionnaire extends PureComponent {
             backgroundColor: "rgba(100,100,100,0)"
           }}
         >
-          <ButtonToolbar aria-label="Toolbar with button groups">
+          <ButtonToolbar>
             <ButtonGroup className="mr-2">
               <Button
                 variant="dark"
@@ -140,8 +149,13 @@ class Questionnaire extends PureComponent {
 
             <ButtonGroup className="mr-2">
               <Button
+                disabled={selectedOptions.length === 0}
                 variant={isLast ? "info" : "dark"}
-                onClick={() => this.changeQuestion("NEXT")}
+                onClick={
+                  isLast
+                    ? () => this.finishForm()
+                    : () => this.changeQuestion("NEXT")
+                }
               >
                 {isLast
                   ? translate(language, "finish")
