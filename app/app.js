@@ -2,10 +2,13 @@ import express from "express";
 import mariadb from "mariadb";
 import dotenv from "dotenv";
 import routes from "./routes";
-
+import cors from "cors";
+import parser from "body-parser";
 // Initialize
 const PORT = 4000;
 const server = express();
+server.use(cors());
+server.use(parser.json());
 dotenv.config();
 
 // Connecting to the SQL database
