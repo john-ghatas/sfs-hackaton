@@ -1,7 +1,7 @@
-import getAllMinors from './getAllMinors'
+import questions from "./questions";
 
 const routes = {
-    '/get-all-minors': getAllMinors
-}
+  "/questions": questions
+};
 
-export default routes
+export default routes;
