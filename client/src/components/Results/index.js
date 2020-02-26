@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import Bar from "./bar";
-import {} from "../../helpers/HOC";
 
 class Results extends PureComponent {
   state = {
