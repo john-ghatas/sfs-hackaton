@@ -2,12 +2,23 @@ import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
 
 import { Jumbotron as Div } from "react-bootstrap";
+import Progress from "./progress";
 import Option from "./option";
 
 class Questionnaire extends PureComponent {
   state = {
     // Example data
     questions: [
+      {
+        question: "question goes here",
+        options: [
+          "answer 1",
+          "answer 2 is better",
+          "answer 3 is best",
+          "answer 4 is worst"
+        ],
+        multiSelect: true
+      },
       {
         question: "question goes here",
         options: [
@@ -38,6 +49,11 @@ class Questionnaire extends PureComponent {
     const question = this.state.questions[this.state.questionIndex];
     return (
       <Div style={styles.container}>
+        <Progress
+          current={this.state.questionIndex}
+          length={this.state.questions.length - 1}
+        />
+
         <h3 style={styles.question}>
           {question.question}
           <div style={styles.divider} />
@@ -70,13 +86,15 @@ const flexCenter = {
 const styles = {
   container: {
     ...flexCenter,
-    backgroundColor: "rgba(100,100,100,.1)",
-    width: "100%"
+    width: "100%",
+    padding: "2rem",
+    backgroundColor: "rgba(100,100,100,.1)"
   },
   question: {
     ...flexCenter,
     color: "black",
-    textAlign: "center"
+    textAlign: "center",
+    marginBottom: 16
   },
   divider: {
     height: 1,

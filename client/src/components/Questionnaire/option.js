@@ -44,12 +44,12 @@ const styles = {
     height: 24,
     marginRight: 8,
     cursor: "pointer",
-    backgroundColor: "rgb(221,221,221)"
+    backgroundColor: "ghostwhite"
   },
   innerIndicator: {
     width: 12,
     height: 12,
-    backgroundColor: "rgb(34,102,221)"
+    backgroundColor: "darkturquoise"
   }
 };
 
