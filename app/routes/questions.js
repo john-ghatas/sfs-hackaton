@@ -1,4 +1,8 @@
-export default (request, response, database) => {
+const method = "GET";
+
+// TODO error handling: invalid language
+
+const call = (request, response, database) => {
   const language = request.query.lang;
 
   database
@@ -16,3 +20,5 @@ export default (request, response, database) => {
       response.json(error);
     });
 };
+
+export default { method, call };
