@@ -47,43 +47,4 @@ const styles = {
     alignSelf: "center",
     textAlign: "center"
   },
-  progress_container: {
-    margin: "10px",
-    borderRadius: "20px",
-    borderColor: "#000",
-    flexDirection: "column",
-    display: "flex"
-  },
-  myProgress: {
-    width: "100%",
-    backgroundColor: "ghostwhite",
-    borderRadius: "20px"
-  },
-  title_minor: {
-    selfAlign: "center",
-    textAlign: "center"
-  },
-  myBar: {
-    width: "10%",
-    height: "30px",
-    backgroundColor: "darkturquoise",
-    textAlign: "center",
-    lineHeight: "30px",
-    color: "#fff",
-    borderRadius: "20px"
-  },
-  container_description: {
-    flexDirection: "row",
-    display: "flex"
-  },
-  button_share: {
-    justifyContent: "end",
-    alignSelf: "center",
-    marginLeft: "auto",
-    borderRadius: "10px",
-    border: "none",
-    backgroundColor: "darkturquoise",
-    color: "white",
-    padding: "6px"
-  }
 };
