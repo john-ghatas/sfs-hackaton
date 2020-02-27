@@ -11,18 +11,15 @@ const call = (request, response, database) => {
       const results = rows[0];
       results.scores = JSON.parse(results.scores);
 
-      const minorsQuery = results.scores
-        .map(score => `name = '${score.name}'`)
-        .join(" OR ");
-
       database
-        .query(
-          `SELECT description_${lang} AS description FROM Minors WHERE ${minorsQuery}`
-        )
+        .query(`SELECT name, description_${lang} AS description FROM Minors`)
         .then(minors => {
           results.scores.forEach((score, index) => {
             score.similarity = parseFloat(score.similarity);
-            score.description = minors[index].description;
+            score.description = minors.find(
+              minor => minor.name === score.name
+            ).description;
+
             const kebabCasedName = score.name.toLowerCase().replace(/ /g, "-");
             score.link = `${baseUrl}${
               lang === "EN" ? "en/" : ""
