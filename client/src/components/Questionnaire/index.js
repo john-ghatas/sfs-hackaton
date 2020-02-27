@@ -1,6 +1,4 @@
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
-
 import { Jumbotron as Div } from "react-bootstrap";
 import Progress from "./progress";
 import Option from "./option";
