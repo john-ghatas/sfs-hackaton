@@ -27,7 +27,7 @@ class Bar extends PureComponent {
   }
 
   render() {
-    const { percentage, name, description, link } = this.props;
+    const { percentage, name, description, link, language } = this.props;
     return (
       <Fragment>
         <div style={styles.progress_container}>
@@ -43,7 +43,7 @@ class Bar extends PureComponent {
             <span> {description} </span>
             <button style={styles.button_share}>
               <a href={link} style={styles.linkText}>
-                {translate(this.props.language, "link")}
+                {translate(language, "link")}
               </a>
             </button>
           </div>

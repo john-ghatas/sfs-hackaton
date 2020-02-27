@@ -4,10 +4,9 @@ import api from "../../api";
 import translate from "../../helpers/translate/standalone";
 class Results extends PureComponent {
   state = {
-    results: []
+    results: [],
+    childrefs: []
   };
-
-  childrefs = [];
 
   componentDidMount = async () => {
     await this.getData();
@@ -43,13 +42,14 @@ class Results extends PureComponent {
   };
 
   iterate() {
-    for (let i = 0; i < this.childrefs.length; i++) {
-      this.childrefs[i].render();
+    const { childrefs } = this.state;
+    for (let i = 0; i < childrefs.length; i++) {
+      childrefs[i].render();
     }
   }
 
   render() {
-    const { results } = this.state;
+    const { results, childrefs } = this.state;
     const { language } = this.props;
     const items = results.map(function(item, index) {
       return (
@@ -59,7 +59,7 @@ class Results extends PureComponent {
           percentage={item.percentage}
           description={item.description}
           link={item.link}
-          ref={ref => (this.childrefs[index] = ref)}
+          ref={ref => (childrefs[index] = ref)}
           language={language}
         />
       );
