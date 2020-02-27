@@ -31,9 +31,9 @@ const parseResults = async (programme, tagCounts) => {
   return response.data;
 };
 
-const getResults = async id => {
+const getResults = async (id, lang) => {
   const response = await axios
-    .get(`${endpoints.postResults}?id=${id}`)
+    .get(`${endpoints.postResults}?id=${id}&lang=${lang}`)
     .then(function(response) {
       return response;
     })
