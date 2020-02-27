@@ -32,5 +32,13 @@ export default {
   finish: {
     [NL]: "Verstuur",
     [EN]: "Send"
+  },
+  link: {
+    [NL]: "Ga naar minor pagina",
+    [EN]: "Go to minor page"
+  },
+  results: {
+    [NL]: "Resultaten",
+    [EN]: "Results"
   }
 };
