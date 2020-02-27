@@ -6,16 +6,14 @@ import Option from "./option";
 import { Spinner, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 import translate from "../../helpers/translate/standalone";
 class Questionnaire extends PureComponent {
-  init = {
+  state = {
     questions: [],
     questionIndex: 0,
     selectedOptions: [],
     programme: "",
     tags: []
   };
-  state = {
-    ...this.init
-  };
+
   componentDidMount = async () => {
     await this.setQuestions();
   };
@@ -78,7 +76,7 @@ class Questionnaire extends PureComponent {
     try {
       await api.parseResults(programme, counts);
     } catch (e) {
-      console.log(e);
+      console.error(e);
     }
   };
 
@@ -100,7 +98,6 @@ class Questionnaire extends PureComponent {
       default:
         break;
     }
-    this.setState({ questonIndex: questionIndex + 1 });
   };
 
   render() {

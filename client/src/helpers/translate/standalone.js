@@ -5,7 +5,7 @@ const getTranslation = (language, text) => {
     const translation = translateFile[text][language];
     return translation;
   } catch (e) {
-    console.log(e);
+    console.error(e);
   }
 };
 
