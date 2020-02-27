@@ -44,9 +44,9 @@ export default {
   aboutPageText: {
     [NL]: `Hallo. Welkom bij de MinorCheck.
 
-    We zijn John & Maurits & Jeff, en wij hebben de MinorCheck gemaakt om het voor studenten gemakkelijker te maken om te beslissen welke ICT minors het beste bij hun persoonlijke voorkeur past.
+    We zijn John, Maurits & Jeff, en wij hebben de Minor Advisor gemaakt om het voor studenten gemakkelijker te maken om te suggereren welke ICT minors het beste bij hun persoonlijke voorkeur past.
 
-    Deze website is een proof of concept van het idee MinorCheck, we hopen dat we de docenten kunnen overtuigen van het belang van een minorcheck voor de studenten.`,
+    Deze website is een proof of concept van het idee Minor Advisor, we hopen dat we de docenten kunnen overtuigen van het belang van een minorcheck voor de studenten.`,
     [EN]: `Hello. Welcome to the Minor Advisor. So glad you’re here. 
 
     We're John & Maurits & Jeff, we made the Minor Advisor to make it easier for students to decide which IT minor would fit best by their personal preference. 
