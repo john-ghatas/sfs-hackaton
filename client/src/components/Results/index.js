@@ -1,39 +1,73 @@
 import React, { PureComponent } from "react";
 import Bar from "./bar";
-
+import api from "../../api";
+import translate from "../../helpers/translate/standalone";
 class Results extends PureComponent {
   state = {
-    listOfPorgressBars: [
-      { id: "myBar", percentage: 85, name: "AI" },
-      { id: "myBar1", percentage: 75, name: "ICT-TEACHING" },
-      { id: "myBar2", percentage: 65, name: "Software for Science" },
-      { id: "myBar3", percentage: 55, name: "Virtual Reality" },
-      { id: "myBar4", percentage: 55, name: "Virtual" }
-    ]
+    results: [],
+    childrefs: []
   };
 
-  childrefs = [];
+  componentDidMount = async () => {
+    await this.getData();
+    this.iterate();
+  };
 
-  componentDidMount() {
-    for (let i = 0; i < this.childrefs.length; i++) {
-      this.childrefs[i].cycle();
+  componentDidUpdate = async (prevProps, prevState) => {
+    if (
+      prevState.results.length !== this.state.results.length ||
+      prevProps.language !== this.props.language
+    )
+      await this.getData();
+  };
+
+  getData = async () => {
+    const questionnaireId = this.props.match.params.id;
+    const { language } = this.props;
+    const initResults = await api.getResults(questionnaireId, language);
+    const results = initResults
+      ? initResults.scores.map((result, index) => {
+          const { similarity, name, description, link } = result;
+          return {
+            id: index,
+            percentage: similarity * 100,
+            name,
+            description,
+            link
+          };
+        })
+      : [];
+
+    this.setState({ results });
+  };
+
+  iterate() {
+    const { childrefs } = this.state;
+    for (let i = 0; i < childrefs.length; i++) {
+      childrefs[i].render();
     }
   }
+
   render() {
-    const items = this.state.listOfPorgressBars.map(function(item, index) {
+    const { results, childrefs } = this.state;
+    const { language } = this.props;
+    const items = results.map(function(item, index) {
       return (
         <Bar
           key={index}
           name={item.name}
           percentage={item.percentage}
-          ref={ref => (this.childrefs[index] = ref)}
+          description={item.description}
+          link={item.link}
+          ref={ref => (childrefs[index] = ref)}
+          language={language}
         />
       );
     }, this);
 
     return (
       <div className="App">
-        <h1 style={styles.headerText}>Minor results</h1>
+        <h1 style={styles.headerText}>{translate(language, "results")}</h1>
         {items}
       </div>
     );
@@ -46,5 +80,5 @@ const styles = {
   headerText: {
     alignSelf: "center",
     textAlign: "center"
-  },
+  }
 };

@@ -6,7 +6,7 @@ class ResultsWrapper extends Component {
   render() {
     return (
       <Container>
-        <Results />
+        <Results {...this.props} />
       </Container>
     );
   }

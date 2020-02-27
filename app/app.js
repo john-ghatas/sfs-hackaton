@@ -35,7 +35,7 @@ database
   });
 
 // Getting all routes and applying them
-Object.entries(routes).forEach(([key, value]) => {
+routes.forEach(([key, value]) => {
   switch (value.method) {
     case "GET":
       server.get(key, (req, res) => value.call(req, res, database));

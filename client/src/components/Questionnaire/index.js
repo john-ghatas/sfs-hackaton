@@ -73,11 +73,8 @@ class Questionnaire extends PureComponent {
     for (let i = 0; i < flattened.length; i++) {
       counts[flattened[i]] = 1 + (counts[flattened[i]] || 0);
     }
-    try {
-      await api.parseResults(programme, counts);
-    } catch (e) {
-      console.error(e);
-    }
+    const response = await api.parseResults(programme, counts);
+    this.props.history.push(`/results/${response.uuid}`);
   };
 
   changeQuestion = action => {

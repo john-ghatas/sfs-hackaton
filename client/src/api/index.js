@@ -31,7 +31,21 @@ const parseResults = async (programme, tagCounts) => {
   return response.data;
 };
 
+const getResults = async (id, lang) => {
+  const response = await axios
+    .get(`${endpoints.postResults}?id=${id}&lang=${lang}`)
+    .then(function(response) {
+      return response;
+    })
+    .catch(function(error) {
+      return error;
+    });
+
+  return response.data;
+};
+
 export default {
   getAllQuestions,
-  parseResults
+  parseResults,
+  getResults
 };
