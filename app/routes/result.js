@@ -22,11 +22,9 @@ const call = (request, response, database) => {
 
         const similarityPoints = Object.keys(rankedTags).reduce(
           (accumulator, tag) => {
-            if (tagCounts[tag] === undefined) {
-              accumulator += 0;
-            } else if (tagCounts[tag] <= rankedTags[tag]) {
+            if (tagCounts[tag] && tagCounts[tag] <= rankedTags[tag]) {
               accumulator += Math.pow(tagCounts[tag], 2);
-            } else {
+            } else if (tagCounts[tag] && tagCounts[tag] > rankedTags[tag]) {
               accumulator += Math.pow(rankedTags[tag], 2);
             }
             return accumulator;
@@ -34,7 +32,7 @@ const call = (request, response, database) => {
           0
         );
 
-        row.similarity = (similarityPoints / 30).toFixed(2);
+        row.similarity = (similarityPoints / 54).toFixed(2);
       });
 
       const uuid = uuidv4();
