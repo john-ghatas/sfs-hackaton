@@ -1,8 +1,6 @@
 import React from "react";
 import { Jumbotron as Div } from "react-bootstrap";
-
 import translate from "../../helpers/translate/standalone";
-
 
 const About = props => {
     const { language } = props;
@@ -19,6 +17,5 @@ const About = props => {
     }
   };
   
-  
-  export default About;
+export default About;
   
