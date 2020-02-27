@@ -3,7 +3,6 @@ import { withNavBar } from "../../helpers/HOC";
 import { Container } from "react-bootstrap";
 
 import { Questionnaire } from "../../components";
-
 class LandingPage extends Component {
   render() {
     return (

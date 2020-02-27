@@ -59,11 +59,6 @@ class NavBar extends Component {
                   <Link url="/about" text="about" type="span" />
                 </strong>
               </Nav.Item>
-              <Nav.Item style={spacer}>
-                <strong>
-                  <Link url="/" text="contact" type="span" />
-                </strong>
-              </Nav.Item>
             </Nav>
           </Navbar.Collapse>
           <Nav className="ml-right">
