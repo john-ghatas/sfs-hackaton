@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const endpoints = {
-  getMinors: "/get-all-minors"
+  getQuestions: "/questions",
+  postResults: "/result"
 };
 
 export const createAxios = () => {

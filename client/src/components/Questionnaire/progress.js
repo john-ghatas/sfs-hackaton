@@ -1,14 +1,14 @@
 import React, { Fragment } from "react";
 import PropTypes from "prop-types";
-
+import getTranslation from "../../helpers/translate/standalone";
 const Progress = props => {
-  const { length, current } = props;
-  console.log(props);
-
+  const { length, current, language } = props;
   const circles = [];
+
   for (let i = 0; i <= length; i++) {
     circles.push(
       <div
+        key={i}
         style={{
           ...styles.circle,
           ...{
@@ -32,7 +32,10 @@ const Progress = props => {
         {circles}
       </div>
 
-      <span style={styles.text}>{`Vraag ${current + 1}/${length + 1}`}</span>
+      <span style={styles.text}>{`${getTranslation(
+        language,
+        "question"
+      )} ${current + 1}/${length + 1}`}</span>
     </Fragment>
   );
 };
