@@ -1,16 +1,15 @@
 import React, { Component } from "react";
 import { withNavBar } from "../../helpers/HOC";
 import { Container } from "react-bootstrap";
-
-import { Questionnaire } from "../../components";
-class LandingPage extends Component {
+import { Results } from "../../components";
+class ResultsWrapper extends Component {
   render() {
     return (
       <Container>
-        <Questionnaire {...this.props} />
+        <Results {...this.props} />
       </Container>
     );
   }
 }
 
-export default withNavBar(LandingPage);
+export default withNavBar(ResultsWrapper);

@@ -12,14 +12,15 @@ wrapper.defaultProps = {
   style: {
     backgroundImage: `url(${image})`,
     backgroundSize: "cover",
-    backgroundRepeat: "no-repeat",
-    backgroundColor: "rgba(100,100,100,.6)",
+    backgroundRepeat: "repeat",
     backgroundBlendMode: "multiply",
     display: "block",
     width: "100%",
     height: "100%",
     position: "absolute",
-    borderRadius: "0px"
+    padding: "1rem",
+    borderRadius: "0px",
+    overflow: "auto"
   }
 };
 
