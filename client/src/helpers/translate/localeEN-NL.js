@@ -42,7 +42,7 @@ export default {
     [EN]: "Results"
   },
   aboutPageText: {
-    [NL]: `Hallo. Welkom bij de MinorCheck.
+    [NL]: `Hallo. Welkom bij de Minor Advisor.
 
     We zijn John, Maurits & Jeff, en wij hebben de Minor Advisor gemaakt om het voor studenten gemakkelijker te maken om te suggereren welke ICT minors het beste bij hun persoonlijke voorkeur past.
 
