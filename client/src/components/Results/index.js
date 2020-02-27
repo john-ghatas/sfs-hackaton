@@ -15,7 +15,10 @@ class Results extends PureComponent {
   };
 
   componentDidUpdate = async (prevProps, prevState) => {
-    if (prevState.results.length !== this.state.results.length)
+    if (
+      prevState.results.length !== this.state.results.length ||
+      prevProps.language !== this.props.language
+    )
       await this.getData();
   };
 
