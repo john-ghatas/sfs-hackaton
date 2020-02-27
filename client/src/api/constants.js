@@ -1,7 +1,8 @@
 import axios from "axios";
 
 export const endpoints = {
-  getQuestions: "/questions"
+  getQuestions: "/questions",
+  postResults: "/result"
 };
 
 export const createAxios = () => {

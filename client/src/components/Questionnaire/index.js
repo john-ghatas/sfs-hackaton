@@ -67,13 +67,18 @@ class Questionnaire extends PureComponent {
     this.setState({ selectedOptions: newOptions, tags: newTags });
   };
 
-  finishForm = () => {
+  finishForm = async () => {
     const { tags, programme } = this.state;
     const flattened = this.flattenArray(tags);
     const counts = {};
 
     for (let i = 0; i < flattened.length; i++) {
       counts[flattened[i]] = 1 + (counts[flattened[i]] || 0);
+    }
+    try {
+      await api.parseResults(programme, counts);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -152,9 +157,7 @@ class Questionnaire extends PureComponent {
                 disabled={selectedOptions.length === 0}
                 variant={isLast ? "info" : "dark"}
                 onClick={
-                  isLast
-                    ? () => this.finishForm()
-                    : () => this.changeQuestion("NEXT")
+                  isLast ? this.finishForm : () => this.changeQuestion("NEXT")
                 }
               >
                 {isLast
