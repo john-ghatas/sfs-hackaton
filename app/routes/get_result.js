@@ -23,10 +23,10 @@ const call = (request, response, database) => {
           results.scores.forEach((score, index) => {
             score.similarity = parseFloat(score.similarity);
             score.description = minors[index].description;
-            const snakeCasedName = score.name.toLowerCase().replace(/ /g, "-");
+            const kebabCasedName = score.name.toLowerCase().replace(/ /g, "-");
             score.link = `${baseUrl}${
               lang === "EN" ? "en/" : ""
-            }2019-2020/${snakeCasedName}`;
+            }2019-2020/${kebabCasedName}`;
           });
 
           response.json(results);
