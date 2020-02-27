@@ -1,7 +1,11 @@
-import getAllMinors from './getAllMinors'
+import getQuestions from "./get_questions";
+import getResult from "./get_result";
+import postResult from "./post_result";
 
-const routes = {
-    '/get-all-minors': getAllMinors
-}
+const routes = [
+  ["/questions", getQuestions],
+  ["/result", getResult],
+  ["/result", postResult]
+];
 
-export default routes
+export default routes;

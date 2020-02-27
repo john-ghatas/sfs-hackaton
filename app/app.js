@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import routes from "./routes";
 import cors from "cors";
 import parser from "body-parser";
+
 // Initialize
 const PORT = 4000;
 const server = express();
@@ -34,8 +35,17 @@ database
   });
 
 // Getting all routes and applying them
-Object.entries(routes).forEach(([key, value]) => {
-  server.use(key, (req, res) => value(req, res, database));
+routes.forEach(([key, value]) => {
+  switch (value.method) {
+    case "GET":
+      server.get(key, (req, res) => value.call(req, res, database));
+      break;
+    case "POST":
+      server.post(key, (req, res) => value.call(req, res, database));
+      break;
+    default:
+      break;
+  }
 });
 
 // Running the server

@@ -16,5 +16,29 @@ export default {
   hva: {
     [NL]: "HvA",
     [EN]: "AUAS"
+  },
+  question: {
+    [NL]: "Vraag",
+    [EN]: "Question"
+  },
+  previous: {
+    [NL]: "Vorige",
+    [EN]: "Previous"
+  },
+  next: {
+    [NL]: "Volgende",
+    [EN]: "Next"
+  },
+  finish: {
+    [NL]: "Verstuur",
+    [EN]: "Send"
+  },
+  link: {
+    [NL]: "Ga naar minor pagina",
+    [EN]: "Go to minor page"
+  },
+  results: {
+    [NL]: "Resultaten",
+    [EN]: "Results"
   }
 };
