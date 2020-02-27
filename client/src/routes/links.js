@@ -1,6 +1,7 @@
 const links = {
   root: "/",
-  results: "/results/:id"
+  results: "/results/:id",
+  about: "/about"
 };
 
 export default links;

@@ -56,7 +56,7 @@ class NavBar extends Component {
               </Nav.Item>
               <Nav.Item style={spacer}>
                 <strong>
-                  <Link url="/" text="about" type="span" />
+                  <Link url="/about" text="about" type="span" />
                 </strong>
               </Nav.Item>
               <Nav.Item style={spacer}>
