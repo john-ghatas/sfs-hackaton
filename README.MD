@@ -1,6 +1,6 @@
 # Minor Choice portal
 
-[![Build Status](https://travis-ci.org/john-ghatas/sfs-hackaton.svg?branch=development)](https://travis-ci.org/john-ghatas/sfs-hackaton)
+[![Build Status](https://travis-ci.org/john-ghatas/sfs-hackaton.svg?branch=text)](https://travis-ci.org/john-ghatas/sfs-hackaton)
 
 This repository contains the Minor Choice webapp created in the hackaton of Software for Science.
 
