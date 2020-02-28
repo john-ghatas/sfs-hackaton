@@ -1,7 +1,6 @@
 sudo: required
 services:
   - docker
-  - nodejs
 env:
   - DOCKER_COMPOSE_VERSION=1.25.4
 
