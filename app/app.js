@@ -20,9 +20,11 @@ const database = mariadb.createPool({
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
   password: process.env.DB_PASS,
-  database: "sfs",
+  database: process.env.DB_NAME,
   connectTimeout: 30000
 });
+
+console.log(database);
 
 database
   .getConnection()

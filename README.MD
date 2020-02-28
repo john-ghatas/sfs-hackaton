@@ -1,6 +1,6 @@
 # Minor Choice portal
 
-[![Build Status](https://travis-ci.org/john-ghatas/sfs-hackaton.svg?branch=development)](https://travis-ci.org/john-ghatas/sfs-hackaton)
+[![Build Status](https://travis-ci.org/john-ghatas/sfs-hackaton.svg?branch=test)](https://travis-ci.org/john-ghatas/sfs-hackaton)
 
 This repository contains the Minor Choice webapp created in the hackaton of Software for Science.
 
@@ -32,16 +32,17 @@ cd app
 touch .env
 ```
 
-Populate the .env file with the following template:
+Populate the .env and the .env.test file with the following template:
 
 ```
 DB_HOST=
 DB_PORT=
 DB_USER=
 DB_PASS=
+DB_NAME=
 ```
 
-Then enter the corresponding values without enclosing quotation marks. They are respectively the hostname, port, username and password for a MariaDB server. The database name should be `sfs`. Afterwards, the backend can be run. Please note that **npm install** is only required on a change in the package.json or on the first start in both the app and client.
+Then enter the corresponding values without enclosing quotation marks. They are respectively the hostname, port, username and password for a MariaDB server. The database name should be `sfs` or `sfs_test`. Afterwards, the backend can be run. Please note that **npm install** is only required on a change in the package.json or on the first start in both the app and client.
 
 ```bash
 npm install

@@ -1,6 +1,7 @@
 sudo: required
 services:
   - docker
+  - node
 env:
   - DOCKER_COMPOSE_VERSION=1.25.4
 
@@ -10,4 +11,8 @@ before_install:
   - chmod +x docker-compose
   - sudo mv docker-compose /usr/local/bin
 script:
+  - cd app
+  - npm install
+  - npm test
+  - cd ..
   - docker-compose build
