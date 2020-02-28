@@ -5,12 +5,16 @@ import routes from "./routes";
 import cors from "cors";
 import parser from "body-parser";
 
+console.log();
+
 // Initialize
 const PORT = 4000;
 const server = express();
 server.use(cors());
 server.use(parser.json());
-dotenv.config();
+dotenv.config({
+  path: process.env.npm_lifecycle_event === "test" ? ".env.test" : ".env"
+});
 
 // Connecting to the SQL database
 const database = mariadb.createPool({
