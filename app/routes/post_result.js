@@ -16,16 +16,16 @@ const call = (request, response, database) => {
         const rankedTags = row.tags
           .split(",")
           .reduce((accumulator, tag, index) => {
-            accumulator[tag] = 5 - index;
+            accumulator[tag] = 4 - index;
             return accumulator;
           }, {});
 
         const similarityPoints = Object.keys(rankedTags).reduce(
           (accumulator, tag) => {
             if (tagCounts[tag] && tagCounts[tag] <= rankedTags[tag]) {
-              accumulator += Math.pow(tagCounts[tag], 2);
+              accumulator += Math.pow(tagCounts[tag] + 1, 2);
             } else if (tagCounts[tag] && tagCounts[tag] > rankedTags[tag]) {
-              accumulator += Math.pow(rankedTags[tag], 2);
+              accumulator += Math.pow(rankedTags[tag] + 1, 2);
             }
             return accumulator;
           },

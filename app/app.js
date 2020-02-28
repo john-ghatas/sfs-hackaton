@@ -58,3 +58,5 @@ process.on("SIGINT", () => {
   database.end();
   process.exit();
 });
+
+export { server, database };

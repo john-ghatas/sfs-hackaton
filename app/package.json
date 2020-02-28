@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "start": "nodemon app.js --exec babel-node --presets babel-preset-env"
+    "start": "nodemon app.js --exec babel-node",
+    "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
@@ -11,9 +12,29 @@
     "uuid": "^7.0.1"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.3",
-    "babel-preset-env": "^1.7.0",
-    "nodemon": "^2.0.2"
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.2",
+    "supertest": "^4.0.2"
+  },
+  "babel": {
+    "presets": [
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
   }
 }
