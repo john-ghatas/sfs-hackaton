@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "nodemon app.js --exec babel-node DOTENV_CONFIG_PATH=./.env.test",
+    "start": "nodemon app.js --exec babel-node",
     "test": "jest"
   },
   "dependencies": {
