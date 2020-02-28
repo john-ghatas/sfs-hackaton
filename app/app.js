@@ -5,8 +5,6 @@ import routes from "./routes";
 import cors from "cors";
 import parser from "body-parser";
 
-console.log();
-
 // Initialize
 const PORT = 4000;
 const server = express();
