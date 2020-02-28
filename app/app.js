@@ -24,8 +24,6 @@ const database = mariadb.createPool({
   connectTimeout: 30000
 });
 
-console.log(database);
-
 database
   .getConnection()
   .then(() => {

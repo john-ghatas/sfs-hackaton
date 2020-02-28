@@ -41,6 +41,8 @@ describe("Test the results flow", () => {
   }, 30000);
 });
 
-afterAll(() => {
-  database.end();
+afterAll(async done => {
+  await database.end();
+  database.on("disconnected", done);
+  done();
 });
