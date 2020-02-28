@@ -86,3 +86,69 @@ Change your directory to **scripts** from the root directory and run the stop sc
 cd scripts
 ./stop-docker.sh
 ```
+
+---
+
+# API Calls
+
+## GET Endpoints
+
+### Retrieving the questions
+
+This endpoints retrieves the specified questions for the questionnaire, the language is specified in the lang parameter as shown in the table and example below.
+
+**"/questions?lang={lang}"**
+
+---
+
+| Parameter | Options  |
+| --------- | -------- |
+| lang      | NL or EN |
+
+---
+
+### **Example**
+
+**"/questions?lang=EN"**
+
+---
+
+### Getting a saved result
+
+This endpoints retrieves a result of a peer of yourself, using the UUID to get the personal top 5.
+
+**"/result?lang={lang}&lang={lang}"**
+
+---
+
+| Parameter | Options                                                                           |
+| --------- | --------------------------------------------------------------------------------- |
+| lang      | NL or EN                                                                          |
+| id        | Generated UUID gotten from the POST call on the result endpoint documentend below |
+
+---
+
+### **Example**
+
+**"/result?id=ad1ec3b2-2251-401b-a4e5-d2b86284da7d&lang=EN**
+
+---
+
+## POST Endpoints
+
+---
+
+### Post the collected tags to parse the results
+
+This endpoints receives the count of all tags collected from the questionnaire and the programme the student is following.
+
+**"/result"**
+
+**Request header**: "application/json"
+
+---
+
+| Parameter | Types  | example                |
+| --------- | ------ | ---------------------- |
+| counts    | Object | { [tag]: 4, [tag2]: 4} |
+| programme | String | "MyProgramme"          |
