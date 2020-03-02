@@ -117,7 +117,7 @@ This endpoints retrieves the specified questions for the questionnaire, the lang
 
 This endpoints retrieves a result of a peer of yourself, using the UUID to get the personal top 5.
 
-**"/result?lang={lang}&lang={lang}"**
+**"/result?id={id}&lang={lang}"**
 
 ---
 
